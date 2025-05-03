@@ -8,7 +8,7 @@ function App() {
   const [editingUser, setEditingUser] = useState(null);
 
   const fetchUsers = async () => {
-    const res = await axios.get("http://localhost:5000/api/getUsers");
+    const res = await axios.get("https://dsv-backend-2s89.onrender.com/api/getUsers");
     setUsers(res.data);
   };
 

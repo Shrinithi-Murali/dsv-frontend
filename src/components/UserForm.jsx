@@ -41,10 +41,10 @@ export default function UserForm({ fetchUsers, editingUser, setEditingUser }) {
         if (!validate()) return;
         try {
             if (editingUser) {
-                await axios.put(`http://localhost:5000/api/updateUser/${editingUser._id}`, formData);
+                await axios.put(`https://dsv-backend-2s89.onrender.com/api/updateUser/${editingUser._id}`, formData);
                 setEditingUser(null);
             } else {
-                await axios.post("http://localhost:5000/api/createUser", formData);
+                await axios.post("https://dsv-backend-2s89.onrender.com/api/createUser", formData);
             }
             fetchUsers();
             setFormData(initialState);
