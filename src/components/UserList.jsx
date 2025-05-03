@@ -5,7 +5,7 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 export default function UserList({ users, fetchUsers, setEditingUser }) {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this user?")) return;
-    await axios.delete(`http://localhost:5000/api/deleteUser/${id}`);
+    await axios.delete(`https://dsv-backend-2s89.onrender.com/api/deleteUser/${id}`);
     fetchUsers();
   };
 
