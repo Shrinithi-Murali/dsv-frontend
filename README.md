@@ -1,12 +1,69 @@
-# React + Vite
+# User Management System – Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend of a **User Management System** built using **React.js**. It allows users to interact with the backend API to perform operations like creating, viewing, updating, and deleting users.
 
-Currently, two official plugins are available:
+## 🛠 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React.js**
+- **Axios**
+- **Bootstrap**
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🚀 Getting Started
+
+### 📦 Prerequisites
+
+- [Node.js](https://nodejs.org/en/) installed (v14 or above)
+- Backend server should be running on [http://localhost:5000](http://localhost:5000) or as per your `.env` config
+
+### 📥 Installation
+
+1. **Download or Clone the Repository**
+
+   - Download the ZIP file and extract it  
+   **OR**
+   - Clone via Git:
+     ```bash
+     git clone https://github.com/your-username/your-frontend-repo.git
+     cd your-frontend-repo
+     ```
+
+2. **Install Dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Run the Frontend App**
+
+   ```bash
+   npm run dev
+   ```
+---
+
+### 📁 Folder Structure
+
+   ```bash
+      src/
+      ├── components/       # Reusable React components (UserForm, UserList, etc.)
+      ├── config/           # Configuration files (e.g., fieldsConfig.js)
+      ├── App.jsx           # Main app component
+      ├── main.jsx          # App entry point
+      index.html        # Entry point
+      index.css         # Styling    
+   ```
+
+---
+
+### 📤 Deployment
+
+*You can deploy this backend using:*
+- Vercel
+
+---
+
+### 🤝 Contributing
+
+- Contributions, issues, and feature requests are welcome.
+- *Feel free to fork the repository and submit a pull request.*
