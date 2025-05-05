@@ -27,14 +27,36 @@ export default function UserForm({ fetchUsers, editingUser, setEditingUser }) {
 
     const validate = () => {
         let errors = {};
-        userFields.forEach(({ name, label }) => {
-            if (!formData[name]?.trim()) {
+        userFields.forEach(({ name, label, type }) => {
+            const value = formData[name]?.trim();
+            if (!value) {
                 errors[name] = `${label} is required`;
+                return;
+            }
+            if (name === "email") {
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(value)) {
+                    errors[name] = "Enter a valid email address";
+                }
+            }
+            if (name === "phone") {
+                const phonePattern = /^\d{10}$/;
+                if (!phonePattern.test(value)) {
+                    errors[name] = "Phone number must be 10 digits";
+                }
+            }
+            if (name === "dob") {
+                const selectedDate = new Date(value);
+                const today = new Date();
+                if (selectedDate > today) {
+                    errors[name] = "DOB cannot be in the future";
+                }
             }
         });
         setFormErrors(errors);
         return Object.keys(errors).length === 0;
     };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -49,16 +71,7 @@ export default function UserForm({ fetchUsers, editingUser, setEditingUser }) {
             fetchUsers();
             setFormData(initialState);
         } catch (err) {
-            if (err.response?.status === 400 && err.response.data?.error) {
-                const message = err.response.data.error;
-                if (message.includes("duplicate key") && message.includes("email")) {
-                    setFormErrors((prev) => ({ ...prev, email: "This email is already registered" }));
-                } else {
-                    alert("Submission failed: " + message);
-                }
-            } else {
-                console.error(err);
-            }
+            console.error(err);
         }
     };
 
@@ -77,10 +90,9 @@ export default function UserForm({ fetchUsers, editingUser, setEditingUser }) {
                                     value={formData[name]}
                                     onChange={handleChange}
                                     className={`form-select ${formErrors[name] ? "is-invalid" : ""}`}
-                                    required
                                 >
                                     <option value="">Select {label}</option>
-                                    {options.map((opt) => ( 
+                                    {options.map((opt) => (
                                         <option key={opt} value={opt}>{opt}</option>
                                     ))}
                                 </select>
@@ -92,7 +104,7 @@ export default function UserForm({ fetchUsers, editingUser, setEditingUser }) {
                                     value={formData[name]}
                                     onChange={handleChange}
                                     className={`form-control ${formErrors[name] ? "is-invalid" : ""}`}
-                                    required={!!type}
+                                    max={type === "date" ? new Date().toISOString().split("T")[0] : undefined}
                                 />
                             )}
                             {formErrors[name] && (
